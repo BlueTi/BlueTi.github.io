@@ -85,17 +85,6 @@
   Link: </component---src-templates-categories-list-template-js-25a874f4e2b9a444a80b.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/categories/page-data.json>; rel=preload; as=fetch; crossorigin
-/posts/algoritm/ac1003
-  Link: </webpack-runtime-be0aac20a82f29f4adca.js>; rel=preload; as=script
-  Link: </styles-407fe62976dc5310c43e.js>; rel=preload; as=script
-  Link: </framework-f2d5397935be7d8d1b21.js>; rel=preload; as=script
-  Link: </532a2f07-a2b9837034ae8adfec32.js>; rel=preload; as=script
-  Link: </app-c8d7d52c1d0cfb15e420.js>; rel=preload; as=script
-  Link: </styles-407fe62976dc5310c43e.js>; rel=preload; as=script
-  Link: </b40c11bee3846ca70ab17cd1bc776b2e57af83cb-2366d9a3c9d1bae0a16e.js>; rel=preload; as=script
-  Link: </component---src-templates-post-template-js-3594e302ce28b02f3430.js>; rel=preload; as=script
-  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </page-data/posts/algoritm/ac1003/page-data.json>; rel=preload; as=fetch; crossorigin
 /posts/algoritm/ac1008
   Link: </webpack-runtime-be0aac20a82f29f4adca.js>; rel=preload; as=script
   Link: </styles-407fe62976dc5310c43e.js>; rel=preload; as=script
@@ -118,6 +107,17 @@
   Link: </component---src-templates-post-template-js-3594e302ce28b02f3430.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/posts/algoritm/ac1002/page-data.json>; rel=preload; as=fetch; crossorigin
+/posts/algoritm/ac1003
+  Link: </webpack-runtime-be0aac20a82f29f4adca.js>; rel=preload; as=script
+  Link: </styles-407fe62976dc5310c43e.js>; rel=preload; as=script
+  Link: </framework-f2d5397935be7d8d1b21.js>; rel=preload; as=script
+  Link: </532a2f07-a2b9837034ae8adfec32.js>; rel=preload; as=script
+  Link: </app-c8d7d52c1d0cfb15e420.js>; rel=preload; as=script
+  Link: </styles-407fe62976dc5310c43e.js>; rel=preload; as=script
+  Link: </b40c11bee3846ca70ab17cd1bc776b2e57af83cb-2366d9a3c9d1bae0a16e.js>; rel=preload; as=script
+  Link: </component---src-templates-post-template-js-3594e302ce28b02f3430.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/posts/algoritm/ac1003/page-data.json>; rel=preload; as=fetch; crossorigin
 /posts/algoritm/ac1018
   Link: </webpack-runtime-be0aac20a82f29f4adca.js>; rel=preload; as=script
   Link: </styles-407fe62976dc5310c43e.js>; rel=preload; as=script
