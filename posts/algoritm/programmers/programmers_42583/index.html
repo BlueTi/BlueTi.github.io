@@ -84,31 +84,43 @@ data-styled.g4[id="styled-search-root-sc-1bx7tsq-0"]{content:"cPgMBZ,"}/*!sc*/
 <li>대기중인 트럭에서 한대씩 꺼낸다.</li>
 <li>다리의 현재하중(bridge<em>weight)를 체크하여 견딜 수 있을 경우 트럭을 올린다(bridge</em>weight+트럭무게,큐에 트럭삽입).</li>
 <li>견디지 못할 경우 큐에 0을 집어 넣는다.</li>
-<li>이 과정을 초마다 해준다.</li>
+<li>걸리는 시간에 올라가는 시간을 무게한도 만큼 1씩 더해주고 마지막 트럭이 나가는 다리의 길이 만큼의 시간을 더해준다.</li>
 </ul>
 <div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Queue</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">LinkedList</span><span class="token punctuation">;</span>
 
 <span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">solution</span><span class="token punctuation">(</span><span class="token keyword">int</span> bridge_length<span class="token punctuation">,</span> <span class="token keyword">int</span> weight<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> truck_weights<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//결과 시간(time)과 현재 다리의 하중(bridge_weight)를 선언한다.</span>
         <span class="token keyword">int</span> time <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> bridge_weight <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token comment">//다리 위의 상황을 Queue로 선언한다.</span>
         <span class="token class-name">Queue</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> on_bridge <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//나가야하는 트럭 댓수만큼 반복한다.</span>
         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> truck_weights<span class="token punctuation">.</span>length<span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">//현재 다리의 하중(bridge_weigth)이 견딜 수 있는 무게(weight)보다 적고 아직 나가야하는 트럭이 남아있다면 반복</span>
             <span class="token keyword">while</span> <span class="token punctuation">(</span>bridge_weight <span class="token operator">&lt;</span> weight <span class="token operator">&amp;&amp;</span> i <span class="token operator">&lt;</span> truck_weights<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">//올라갈때 시간추가</span>
                 time<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token comment">//현재 다리 하중에 트럭의 무게를 더한다.</span>
                 bridge_weight <span class="token operator">+=</span> truck_weights<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token comment">//다리상태 큐에 트럭의 무게를 기록한다.</span>
                 on_bridge<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>truck_weights<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 i<span class="token operator">++</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
+
+            <span class="token comment">//위에 조건에서 무게가 초과하여 while문이 끝날 경우</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>bridge_weight <span class="token operator">></span> weight<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">//다리 위 트럭이 나갈때까지 기다리는 시간을 더한다.</span>
                 time <span class="token operator">+=</span> bridge_length<span class="token punctuation">;</span>
+                <span class="token comment">//트럭이 나갔으니 Queue를 비운다.</span>
                 <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>on_bridge<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                     bridge_weight <span class="token operator">-=</span> on_bridge<span class="token punctuation">.</span><span class="token function">poll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
                 <span class="token punctuation">}</span>
             <span class="token punctuation">}</span>
-
         <span class="token punctuation">}</span>
+        <span class="token comment">//무게는 초과하지 않았지만 다리에 남아있는 트럭이 있는 경우</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>on_bridge<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token comment">//마지막 트럭이 나가는 시간을 더해준다.</span>
             time <span class="token operator">+=</span> bridge_length<span class="token punctuation">;</span>
         <span class="token keyword">return</span> time<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
