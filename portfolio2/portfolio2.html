@@ -1,0 +1,644 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>[엔코아 플레이데이터]                                                                                               AI 글쓰기 웹사이트 개발</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a817e1ae-68c2-4550-b5cc-aad66e85f5a4" class="page sans"><header><img class="page-cover-image" src="logo.jpeg" style="object-position:center 50%"/><h1 class="page-title">[엔코아 플레이데이터]                                                                                               AI 글쓰기 웹사이트 개발</h1></header><div class="page-body"><h1 id="3dd5ed60-4bc6-4eb8-b1ed-7f8960be7361" class="">요약</h1><ul id="d1261363-69ad-4989-a354-5d1b2d4b5899" class="bulleted-list"><li style="list-style-type:disc">소개</li></ul><ul id="7f03e9ec-ca42-4d42-a76c-703dee1558ac" class="bulleted-list"><li style="list-style-type:disc">기여</li></ul><ul id="ee360a6f-98b2-4a21-8f51-b269ae0e54ab" class="bulleted-list"><li style="list-style-type:disc">Project Repo : <a href="https:/github.com/GeulReadyEditor/be">https:/github.com/GeulReadyEditor</a></li></ul><h1 id="0f6823fa-d4a8-4ed0-b43d-d722ab9f065f" class="">소개</h1><h3 id="74f820c4-90f4-4531-a6fc-e2a6354692b1" class="">생각을 표현하는 도우미</h3><ul id="6ebd29a5-be74-4b86-9c15-1e30787ef5a7" class="bulleted-list"><li style="list-style-type:disc">글쓰기에 편리한 도구제공<ul id="fedaa833-a706-4457-bdaf-2c274b27185f" class="bulleted-list"><li style="list-style-type:circle">평소 글을 쓰다 표현하기 어렵거나 뒷 내용의 매끄러운 전개에 어려움을 겪을때 AI가 학습한 내용을 기반을 뒤의 내용을 연결하는 문장들을 추천하여 도움</li></ul><ul id="d9392d55-d567-4780-ba57-a58eba1082a2" class="bulleted-list"><li style="list-style-type:circle">장시간 글쓰기로 피곤해 질 수 있는 집필 환경에 대한 환경 도움<ul id="948627f6-11a0-4faf-a783-642ca2dc2065" class="bulleted-list"><li style="list-style-type:square">다크모드를 이용한 눈의 피로 저하</li></ul><ul id="f83aa383-2ecc-47ea-aaf8-659b3923cbb4" class="bulleted-list"><li style="list-style-type:square">챕터 분리 표기 및 저장으로 소주제에 대한 집중</li></ul><ul id="ca2f8072-5fab-4a74-b5f4-b651c2825950" class="bulleted-list"><li style="list-style-type:square">작가의 취향에 맞는 폰트 스타일 제공</li></ul><ul id="3e9f9fab-15dc-4fcc-aaf3-6e99f362430f" class="bulleted-list"><li style="list-style-type:square">내용에 도움이 될 수 있는 자료들을 기입,표시하는 메모 기능</li></ul></li></ul></li></ul><h3 id="f8506249-a24b-4bf0-a7df-147e1139c972" class="">다양한 생각을 접하는 만남의 장</h3><ul id="3a2d4f49-2ef0-4b53-810b-942b4e7f1bf7" class="bulleted-list"><li style="list-style-type:disc">다양한 작가들의 글을 검색 또는 추천으로 만남<ul id="381e97e8-fc8c-4f50-8c57-8fc41717b4cb" class="bulleted-list"><li style="list-style-type:circle">메인 페이지에서 많은 사람들이 보는 게시글 추천</li></ul><ul id="da1d2f23-83fb-4907-b885-e919458ab5d1" class="bulleted-list"><li style="list-style-type:circle">로그인 하였을 시 사용자의 선택 경향에 따른 글 추천</li></ul><ul id="3e3d6f6d-303b-407f-9543-8aee5b465a51" class="bulleted-list"><li style="list-style-type:circle">태그를 이용한 글 검색</li></ul></li></ul><p id="b895353e-7ee4-453a-8ae8-9f124b8958af" class="">
+</p><h3 id="a48ed029-c932-4e87-bf60-09d5d1326e15" class="">아키텍처 구조</h3><div id="286c7e1e-979c-4efa-aead-949d3c14688f" class="column-list"><div id="5532418b-a06a-4891-b4a5-7c6bf02ad9f3" style="width:93.75%" class="column"><figure id="b8fd48e1-eb59-4617-ba5f-50af729d91c3" class="image"><a href="Untitled.png"><img style="width:768px" src="Untitled.png"/></a></figure></div><div id="fcb4e7ae-ff1b-4247-8dfe-cdb950e8e632" style="width:6.25%" class="column"><p id="6c142708-7967-4532-a8ff-4649ba58b600" class="">
+</p></div></div><h1 id="59553c0b-c35d-4265-8081-86a88ffa0e9f" class="">담당업무</h1><ul id="cb5a77a9-6274-43fa-b76a-19eb55b67bf6" class="bulleted-list"><li style="list-style-type:disc">Spring Boot REST API 구현</li></ul><ul id="700c8993-294d-4823-8636-e4d4cb53e26c" class="bulleted-list"><li style="list-style-type:disc">보안처리를 위해 Vue Client에서 AWS Cognito를 통해 인증받은 jwt Token을 확인하고 API에 접근하도록 구현</li></ul><ul id="ed8b6c14-b9b8-4870-ab48-3892f24d1f40" class="bulleted-list"><li style="list-style-type:disc">가상서버 확장에 용이하도록  AWS S3에 필요한 이미지 데이터들을 전송,참고하도록 구현</li></ul><ul id="c3772655-a1fe-497c-becd-05c1657ab2b3" class="bulleted-list"><li style="list-style-type:disc">개발 시 Debian OS + Docker + MongoDB를 이용하여 개발 중인 팀원들이 구현한 서비스를 확인하도록 구현</li></ul><ul id="a59877d4-fae5-40fd-a74f-cba6a828d435" class="bulleted-list"><li style="list-style-type:disc">AI 학습 및 모델 선정을 위한 검토</li></ul><ul id="bfd6cdde-a419-4555-93b7-376bdea1507e" class="bulleted-list"><li style="list-style-type:disc">Docker + Travis CI를 이용한 AWS ElasticBeanStalk 배포 이용</li></ul><h1 id="a31c8adb-d0b1-459c-977c-0fc91608b3f1" class="">사용 기술</h1><ul id="8ccf60cc-0d17-4ed4-868a-93f51e034107" class="bulleted-list"><li style="list-style-type:disc">OS : Ubuntu</li></ul><ul id="dabc4f06-b5a3-4e7b-96ae-818b7f9cccaf" class="bulleted-list"><li style="list-style-type:disc">Language :  Python, Java</li></ul><ul id="d1b8f960-f85a-4c1c-bbb7-5143e0611a3e" class="bulleted-list"><li style="list-style-type:disc">Framework: Vue, Flask ,TensorFlow ,Spring</li></ul><ul id="88da7741-5ee7-4b5e-98d6-750783fad0d5" class="bulleted-list"><li style="list-style-type:disc">DB : MongoDB</li></ul><ul id="6dafe1e3-abe8-4d30-a730-084ed5db62a5" class="bulleted-list"><li style="list-style-type:disc">Cloud : AWS(EC2, S3, Cognito,ElasticBeanStalk)</li></ul><h1 id="666dd72f-6238-45b5-9655-e3334f648ca4" class="">프로젝트 총평</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b9bcbbee-9254-4d51-bc22-01064cf74c8a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">한 달에 안에 롤 모델을 삼았던 브런치의 UI에 추가하고 싶었던 글쓰기 편의 기능을 추가하고, 서버에서 주요 기능 고장 없이 배포까지  성공적인 순탄한 작업이였다.</div></figure><h3 id="855ad13e-ca59-4786-a74f-7577dbc31802" class="">배운 점</h3><ul id="53b57495-3ec4-4e57-962e-c606309da99c" class="bulleted-list"><li style="list-style-type:disc">Tensorflow + Cuda를 이용한 AI 모델 학습 및 이용</li></ul><ul id="4ff084d5-e1d6-4b81-8953-3b0cb377de89" class="bulleted-list"><li style="list-style-type:disc">Spring, AWS, Docker가 제공하는 강력한 서비스 생산 및 배포 기능<ul id="3af9dc37-d96a-4a7c-ac8a-83aa182af646" class="bulleted-list"><li style="list-style-type:circle">Backend 개발에서 Spring Restful API+ Vue의 이용으로 상당히 강력하고 빠르게 실사용 가능한 서비스를 빠르게 제작할 수 있음에 놀라웠다.</li></ul><ul id="5398dba3-e22b-421e-a761-dcae4a028745" class="bulleted-list"><li style="list-style-type:circle">Spring에서 AWS는 물론 다양한 서비스들에 연결을 이미 제공, 1번은 가져다 쓰는 법을 아는 것이지만 더 큰 제어를 위해서 기술 기반의 작동 원리도 알아야 했다.</li></ul><ul id="07aa8f48-dd27-4cc6-9c3d-4c6415504371" class="bulleted-list"><li style="list-style-type:circle">개발 중 Travis CI가 깃허브를 관찰하여 내가 푸쉬한 내용들을 자동으로 빌드하여 배포하는 과정에서 많은 오류가 있었지만 도커 이미지 생성을 위한 명령어 체계</li></ul></li></ul><ul id="b7793091-0aa8-4675-8e41-8b9a0d662298" class="bulleted-list"><li style="list-style-type:disc">수업도 좋지만 직접 개발의 성장 속도 차이</li></ul><ul id="51b28901-991b-4ad3-a82e-f990e08b117c" class="bulleted-list"><li style="list-style-type:disc">협업<ul id="4040aff8-ae63-4ca0-8923-d3ec66f537ae" class="bulleted-list"><li style="list-style-type:circle">좋은 협업을 위해선 뚜렷한 역할 선정이 중요</li></ul><ul id="5a748f81-2679-4462-b2b7-637549f01166" class="bulleted-list"><li style="list-style-type:circle">분리된 역할에 대한 최선</li></ul><ul id="99f3be51-9a8f-415d-8760-122db059548a" class="bulleted-list"><li style="list-style-type:circle">다른 팀원의 역할 이해가 더 해지면, 더 좋은 커뮤니케이션과 작업이 가능</li></ul><ul id="66d407be-953a-40d2-bae7-8b9d9b08852b" class="bulleted-list"><li style="list-style-type:circle">토론은 늘 자료와 데이터 기반</li></ul><ul id="50fdfab8-771a-4fc7-a294-eaa29833898c" class="bulleted-list"><li style="list-style-type:circle">상대에 대한 배려는 장기간 큰 효과</li></ul></li></ul><h1 id="140fe996-bfa6-4b1b-9452-873773267de7" class="">개발환경</h1><ul id="4a61542f-0fa7-4941-b8e2-3bcfc45e6fe3" class="toggle"><li><details open=""><summary>개발환경</summary><p id="ba7afeba-a65e-46ca-a915-60ce5447a293" class="">
+</p><div id="6b636565-02bd-4f5f-9b9e-67b8b8efbff6" class="collection-content"><h4 class="collection-title">FE</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>구분</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>개발환경</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>개발도구</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>개발언어</th></tr></thead><tbody><tr id="5de74185-40b8-4b4a-b3cd-2d353ffd1fd5"><td class="cell-title"><a href="https:/www.notion.so/SPA-5de7418540b84b4ab3cd2d353ffd1fd5">SPA</a></td><td class="cell-=nBP">VSCode</td><td class="cell-f;DC">Vue</td><td class="cell-W|PS">JavaScript, HTML, CSS</td></tr><tr id="93ad597f-3b21-4d3e-a149-af139599c0a0"><td class="cell-title"><a href="https:/www.notion.so/Design-93ad597f3b214d3ea149af139599c0a0">Design</a></td><td class="cell-=nBP">VSCode</td><td class="cell-f;DC">Vuetify</td><td class="cell-W|PS">CSS</td></tr></tbody></table></div><p id="b0653fe2-9b16-440a-a15e-f9c572d262ba" class="">
+</p><div id="aa475f9f-f585-43da-9ce4-0c13fb5f8478" class="collection-content"><h4 class="collection-title">BE</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>구분</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>개발환경</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>개발도구</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>개발언어</th></tr></thead><tbody><tr id="13aa6999-43fe-4750-8b13-8c6cc7d2c020"><td class="cell-title"><a href="https:/www.notion.so/Server-13aa699943fe47508b138c6cc7d2c020">Server</a></td><td class="cell-=nBP">VSCode</td><td class="cell-f;DC">Spring</td><td class="cell-W|PS">JAVA</td></tr><tr id="6334199a-e1d4-4322-a9f8-7b68194fd0cf"><td class="cell-title"><a href="https:/www.notion.so/Server-AI-6334199ae1d44322a9f87b68194fd0cf">Server(AI)</a></td><td class="cell-=nBP">Pycharm</td><td class="cell-f;DC">Flask</td><td class="cell-W|PS">Python</td></tr><tr id="eab8c190-79f9-4392-ad35-b8c43b1110f3"><td class="cell-title"><a href="https:/www.notion.so/AI-eab8c19079f94392ad35b8c43b1110f3">AI</a></td><td class="cell-=nBP">Pycharm</td><td class="cell-f;DC">Tensorflow, GPT2, KoNLPy</td><td class="cell-W|PS">Python</td></tr><tr id="1c4abe7f-ee5d-45e7-9ad2-d021ee9b48d2"><td class="cell-title"><a href="https:/www.notion.so/DB-1c4abe7fee5d45e79ad2d021ee9b48d2">DB</a></td><td class="cell-=nBP">MongoDB Compass</td><td class="cell-f;DC">MongoDB</td><td class="cell-W|PS">MongoDB</td></tr></tbody></table></div><h3 id="61cc53de-df60-465c-acfa-45113b1f7ec6" class="">INFRA</h3><div id="942f1374-7d65-4136-b0a8-8026a5e18d91" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>구분</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>서비스</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>비고</th></tr></thead><tbody><tr id="46080837-3655-466f-aaf6-dbb57f9ca196"><td class="cell-title"><a href="https:/www.notion.so/Computing-460808373655466faaf6dbb57f9ca196">Computing</a></td><td class="cell-eUO`">AWS EC2 Amazon Linux</td><td class="cell-fFdB">Elastic Beanstalk</td></tr><tr id="f5e882c3-ca89-4b35-a380-57ecfac9ea74"><td class="cell-title"><a href="https:/www.notion.so/Storage-Deploy-f5e882c3ca894b35a38057ecfac9ea74">Storage(Deploy)</a></td><td class="cell-eUO`">AWS S3</td><td class="cell-fFdB">Elastic Beanstalk</td></tr><tr id="ca7a02b4-76aa-4fb3-ba2f-f0403743444b"><td class="cell-title"><a href="https:/www.notion.so/Storage-ca7a02b476aa4fb3ba2ff0403743444b">Storage</a></td><td class="cell-eUO`">AWS S3</td><td class="cell-fFdB"></td></tr><tr id="6db20593-c45b-470e-a2ea-c52e38d72c90"><td class="cell-title"><a href="https:/www.notion.so/User-Authentication-JWT-6db20593c45b470ea2eac52e38d72c90">User Authentication(JWT)</a></td><td class="cell-eUO`">AWS Cognito, Amplify</td><td class="cell-fFdB"></td></tr><tr id="86707cc9-1575-458c-b927-b877ac4c1056"><td class="cell-title"><a href="https:/www.notion.so/VCS-86707cc91575458cb927b877ac4c1056">VCS</a></td><td class="cell-eUO`">Github</td><td class="cell-fFdB"></td></tr><tr id="8f8656db-4416-4ff1-9b9c-833b77278b08"><td class="cell-title"><a href="https:/www.notion.so/Container-8f8656db44164ff19b9c833b77278b08">Container</a></td><td class="cell-eUO`">Docker</td><td class="cell-fFdB"></td></tr><tr id="4da5a492-3ad2-4d80-a01d-b5f061560a98"><td class="cell-title"><a href="https:/www.notion.so/CI-4da5a4923ad24d80a01db5f061560a98">CI</a></td><td class="cell-eUO`">Travis CI</td><td class="cell-fFdB"></td></tr><tr id="de60027e-7806-4611-984b-3145a9b32cd8"><td class="cell-title"><a href="https:/www.notion.so/Proxy-de60027e78064611984b3145a9b32cd8">Proxy</a></td><td class="cell-eUO`">Nginx</td><td class="cell-fFdB"></td></tr></tbody></table></div></details></li></ul><h1 id="3cdee51a-ffc2-4574-97da-d784f62a0974" class="">요구사항 명세서</h1><ul id="72fc0d84-31d4-4252-a2ef-9cbf6937a277" class="toggle"><li><details open=""><summary>요구사항 명세서</summary><p id="98c56bc3-f9c8-45c9-aaf6-bfa280758c92" class="">HL-Header Left : 공통</p><p id="a02b810a-5b16-4c26-bb2e-1c092a099a64" class="">HRB-Header Right Before Login : 공통 로그인 전</p><p id="70848524-4ff7-46b4-a5d1-2d97232993c6" class="">HRA-Header Right After Login : 공통 로그인 후</p><p id="9e4a98fd-e4ab-4aa4-970d-2a85fd108785" class="">HR1-Header Right 1 : 글 밖</p><p id="ba4f831d-1b3f-4ed5-b7ce-d51e23a20bf0" class="">HR2-Header Right 2 : 글 안</p><p id="41b9dc53-1ac1-48cc-b98e-70bee5926738" class="">HR3-Header Right 3 : 글쓰기</p><h2 id="8a06fb8e-d9ef-403e-9e94-4a136797b5c6" class="">01_Main</h2><figure id="bb8206d2-0742-4f9b-9f99-1247ad541549" class="image"><a href="Untitled%201.png"><img style="width:912px" src="Untitled%201.png"/></a></figure><figure id="2e90311f-84a3-48de-9b7d-ba2987edb054" class="image"><a href="Untitled%202.png"><img style="width:912px" src="Untitled%202.png"/></a></figure><h2 id="1ea2952b-5b70-4df1-8cdc-e5c16b33b9b5" class="">02_글 내용</h2><figure id="ab839ee6-c83d-4970-82e6-e6ed26cd1bcb" class="image"><a href="Untitled%203.png"><img style="width:912px" src="Untitled%203.png"/></a></figure><h2 id="1b8cd886-d5a1-4766-93d9-125dbfa317bf" class="">03_글쓰기</h2><figure id="e525786b-ec81-499a-aef6-293966b1824c" class="image"><a href="Untitled%204.png"><img style="width:912px" src="Untitled%204.png"/></a></figure><h2 id="3377fd9f-532d-4406-b472-1034ae9d9a3a" class="">00_Header</h2><figure id="545440ed-4782-4f24-9844-6051c86d1ee0" class="image"><a href="Untitled%205.png"><img style="width:912px" src="Untitled%205.png"/></a></figure><h2 id="d4e628ce-218d-49ad-86cc-e271fd0cfd6e" class="">SRS 04_메뉴</h2><figure id="9c0f6c78-e0bc-4e15-ae7a-5282912f46e8" class="image"><a href="Untitled%206.png"><img style="width:912px" src="Untitled%206.png"/></a></figure><h2 id="8869e963-d1b5-484f-bf2e-92f97e8b7e87" class="">SRS 05_메뉴 상세</h2><h3 id="e0a9dceb-373a-4459-bf24-3cd972777b99" class="">*Profile</h3><figure id="38be85c2-b81d-45b6-9f1b-534b2dc1a6ad" class="image"><a href="Untitled%207.png"><img style="width:912px" src="Untitled%207.png"/></a></figure><p id="a64e30e1-c87f-4ec5-b9e0-5b9fcd4c62d2" class="">
+</p><h3 id="c4440218-63b5-4ffd-a632-a95d7202f05e" class="">*Setting</h3><figure id="6151f002-ace4-4c3c-8b65-13c295fb9838" class="image"><a href="Untitled%208.png"><img style="width:912px" src="Untitled%208.png"/></a></figure></details></li></ul><h1 id="f4ac96e7-6841-4cf0-b03f-5aeb6fd1e9a0" class="">설계</h1><div id="acc1ace8-de3f-46b2-a5ad-0d715471e3a4" class="column-list"><div id="7402e672-1706-46a9-85f0-955b407f5d73" style="width:75%" class="column"><ul id="fd7b6ae5-9d48-4f33-905b-34ac324e5cce" class="toggle"><li><details open=""><summary>설계</summary><h3 id="5a83a15a-b96c-4a8b-b29d-71750410856b" class="">1. API</h3><figure id="d6c80225-f38e-4959-8cbf-539f4132ac55" class="image"><a href="Untitled%209.png"><img style="width:1369px" src="Untitled%209.png"/></a></figure><figure id="2da87155-f915-4cd0-9991-45e4339d808c" class="image"><a href="Untitled%2010.png"><img style="width:1146px" src="Untitled%2010.png"/></a></figure><figure id="fc9c4da4-13d7-4bb2-b4c8-ceff0ce6c3f7" class="image"><a href="Untitled%2011.png"><img style="width:1475px" src="Untitled%2011.png"/></a></figure><figure id="580d1174-6564-417c-8176-08599b7735d9" class="image"><a href="Untitled%2012.png"><img style="width:1377px" src="Untitled%2012.png"/></a></figure><p id="9570dc1f-ec96-40ba-92a1-503186a7c99f" class="">
+</p><h3 id="c271b584-4bf0-4fe8-a532-579bb1f4cff1" class="">2. DB Modeling</h3><figure id="a68ca977-bbc5-4e09-aed0-8d1501b78d16" class="image"><a href="Untitled%2013.png"><img style="width:383px" src="Untitled%2013.png"/></a></figure><figure id="04eb1f92-4d9f-4634-813a-dc5d561183b1" class="image"><a href="Untitled%2014.png"><img style="width:504px" src="Untitled%2014.png"/></a></figure><figure id="4e663b6a-fcd4-47ea-9ce7-013b7d9c83c9" class="image"><a href="Untitled%2015.png"><img style="width:382px" src="Untitled%2015.png"/></a></figure><figure id="9bd87ebf-d2ae-4c0f-bc05-66c30857c38b" class="image"><a href="Untitled%2016.png"><img style="width:385px" src="Untitled%2016.png"/></a></figure></details></li></ul></div><div id="7ea23975-f27b-45a1-b851-f248202ad031" style="width:25%" class="column"><p id="b274d5b1-c0ce-44a0-ba9b-be771017774b" class="">
+</p></div></div><h1 id="1b67f4e3-7810-435e-abcc-9ce71f856c10" class="">Project Repo</h1><figure id="ca39b446-ca6b-4686-8c54-74671f0aa39e"><a href="https:/github.com/GeulReadyEditor/onego" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - GeulReadyEditor/onego</div><div class="bookmark-description">Contribute to GeulReadyEditor/onego development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https:/github.com/favicon.ico" class="icon bookmark-icon"/>https:/github.com/GeulReadyEditor/onego</div></div><img src="https:/opengraph.githubassets.com/0923a3bb735fa704509b6808701a0bddbf1f44a5a2d9097ddc0326dfa849574d/GeulReadyEditor/onego" class="bookmark-image"/></a></figure><p id="e3c12aa3-2043-4de0-9d1e-c66bea5c254a" class="">
+</p></div></article></body></html>
