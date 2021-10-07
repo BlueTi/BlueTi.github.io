@@ -5,7 +5,7 @@ socialImage: "/media/about/photo.png"
 ---
 
 
-요즘 하는것 = {코테준비, 물류 PDA 어플리케이션 개발};
+요즘 하는것 = {알고리즘 공부, 물류 PDA 어플리케이션 개발};
 
 
 |What I did|
