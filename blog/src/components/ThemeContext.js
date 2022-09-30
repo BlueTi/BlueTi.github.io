@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react"
-
+import React, { useEffect, useState } from "react";
 
 export const ThemeContext = React.createContext({
   name: "light",
-  updateTheme: () => { },
-})
+  updateTheme: () => {},
+});
 
 export const themes = {
   faded: "#888",
@@ -16,9 +15,12 @@ export const themes = {
     foreground: "#ffffff",
     background: "black",
   },
-}
+};
 export const ThemeProvider = ({ children }) => {
-  const val = typeof window !== `undefined` ? JSON.parse(window.localStorage.getItem("theme")) : undefined;
+  const val =
+    typeof window !== `undefined`
+      ? JSON.parse(window.localStorage.getItem("theme"))
+      : undefined;
   const [theme, setTheme] = useState(val == undefined ? "light" : val);
 
   useEffect(() => {
@@ -34,39 +36,38 @@ export const ThemeProvider = ({ children }) => {
     >
       {children}
     </ThemeContext.Provider>
-  )
-}
+  );
+};
 
-
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 export const ThemedLayout = styled.div`
-    color: ${props => themes[props.theme.name].foreground};
-    background-color: ${props => themes[props.theme.name].background};
-    transition: all 0.4s ease;
-    min-height: 100vh;
-  
-    & a {
-      color: ${props => (props.theme.name === "dark" ? "#B38CD9" : "inherit")};
-    }
-  `
+  color: ${(props) => themes[props.theme.name].foreground};
+  background-color: ${(props) => themes[props.theme.name].background};
+  transition: all 0.4s ease;
+  min-height: 100vh;
 
-
-
+  & a {
+    color: ${(props) => (props.theme.name === "dark" ? "#B38CD9" : "inherit")};
+  }
+`;
 
 import sunIcon from "../../static/media/sun-icon.svg";
 import moonIcon from "../../static/media/moon-icon.svg";
-import Switch from "react-switch"
-
+import Switch from "react-switch";
 
 export const ToggleSwitch = ({ theme }) => {
-  return <div style={{marginTop:"1%",marginBottom:"-1%"}}><Switch
-    onChange={() => theme.updateTheme(theme.name === "light" ? "dark" : "light")}
-    checked={theme.name === "dark"}
-    onColor="#222"
-    offColor="#333"
-    checkedIcon={<img src={moonIcon} alt="moon icon" />}
-    uncheckedIcon={<img src={sunIcon} alt="sun icon" />}
-    boxShadow="0 0 2px 3px #B38CD9"
-    activeBoxShadow="0 0 2px 3px #dfb3e6"
-  /></div>
-}
+  return (
+    <Switch
+      onChange={() =>
+        theme.updateTheme(theme.name === "light" ? "dark" : "light")
+      }
+      checked={theme.name === "dark"}
+      onColor="#222"
+      offColor="#333"
+      checkedIcon={<img src={moonIcon} alt="moon icon" />}
+      uncheckedIcon={<img src={sunIcon} alt="sun icon" />}
+      boxShadow="0 0 2px 3px #B38CD9"
+      activeBoxShadow="0 0 2px 3px #dfb3e6"
+    />
+  );
+};

@@ -1,25 +1,27 @@
 // @flow strict
-import React from 'react';
-import Helmet from 'react-helmet';
-import type { Node as ReactNode } from 'react';
-import { useSiteMetadata } from '../../hooks';
-import styles from './Layout.module.scss';
+import React from "react";
+import Helmet from "react-helmet";
+import type { Node as ReactNode } from "react";
+import { useSiteMetadata } from "../../hooks";
+import styles from "./Layout.module.scss";
 
-import { ThemeContext, ThemeProvider, ThemedLayout, ToggleSwitch } from '../ThemeContext';
+import {
+  ThemeContext,
+  ThemeProvider,
+  ThemedLayout,
+  ToggleSwitch,
+} from "../ThemeContext";
+import Search from "../Search";
+const searchIndices = [{ name: `Pages`, title: `Pages` }];
 
 type Props = {
   children: ReactNode,
   title: string,
   description?: string,
-  socialImage?: string
+  socialImage?: string,
 };
 
-const Layout = ({
-  children,
-  title,
-  description,
-  socialImage = ''
-}: Props) => {
+const Layout = ({ children, title, description, socialImage = "" }: Props) => {
   const { author, url } = useSiteMetadata();
   const metaImage = socialImage || author.photo;
   const metaImageUrl = url + metaImage;
@@ -28,10 +30,19 @@ const Layout = ({
     <div style={{ marginLeft: -50 }}>
       <ThemeProvider>
         <ThemeContext.Consumer>
-          {theme =>
+          {(theme) => (
             <ThemedLayout theme={theme}>
               <div className={styles.layout}>
-                <ToggleSwitch theme={theme} />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    float: "right",
+                  }}
+                >
+                  <Search indices={searchIndices} />
+                  <ToggleSwitch theme={theme} />
+                </div>
                 <Helmet>
                   <html lang="en" />
                   <title>{title}</title>
@@ -46,7 +57,7 @@ const Layout = ({
                 {children}
               </div>
             </ThemedLayout>
-          }
+          )}
         </ThemeContext.Consumer>
       </ThemeProvider>
     </div>
