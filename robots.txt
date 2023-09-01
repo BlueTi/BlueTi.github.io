@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: https://blueti.github.io/sitemap/sitemap-index.xml
+Host: https://blueti.github.io

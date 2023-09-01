@@ -27,55 +27,46 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-9b3505929f03145d2b1f.js"
+    "url": "webpack-runtime-ca4dd22933063f31d10c.js"
   },
   {
-    "url": "styles.f48e3ea9ec0380c117f6.css"
+    "url": "styles.853e65090dc89bfbb4ac.css"
   },
   {
-    "url": "styles-407fe62976dc5310c43e.js"
+    "url": "framework-5a4103e408a6ebb84166.js"
   },
   {
-    "url": "framework-a4c869fc5235f266498a.js"
-  },
-  {
-    "url": "532a2f07-a2b9837034ae8adfec32.js"
-  },
-  {
-    "url": "app-3dd59482401e6f9aef9b.js"
+    "url": "app-4703e834cb4fd746e8f1.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "bf2153c1d80a86e318f4f0a12faed4d5"
+    "revision": "9a02c37c6d9237595d44b4209df6cd9c"
   },
   {
-    "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-241020a1cf7d0f317bbe.js"
+    "url": "static/webfonts/s/roboto/v30/KFOlCnqEu92Fr1MmSU5fBBc4.woff2"
   },
   {
-    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "f6081b83111aea4128c98944b7fafccc"
+    "url": "static/webfonts/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2"
   },
   {
-    "url": "page-data/app-data.json",
-    "revision": "0c2d45dca8f7101fbbfa87e980dc8bdd"
+    "url": "static/webfonts/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc4.woff2"
   },
   {
-    "url": "polyfill-2fee7d9cee31c73f7d1f.js"
+    "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-a7687bc1cde7ceedb59b.js"
   },
   {
-    "url": "manifest.json",
-    "revision": "525f8fdc673f544887998e2e653a54c5"
+    "url": "polyfill-ad71de70ed467e3c392f.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "10119f8e8572fb745f5d114728cb4c6f"
+    "revision": "8718877143b92e9ccfa4d39369990ecc"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerRoute(/(\.js$|\.css$|[^:]static\/)/, new workbox.strategies.CacheFirst(), 'GET');
+workbox.routing.registerRoute(/(\.js$|\.css$|static\/)/, new workbox.strategies.CacheFirst(), 'GET');
 workbox.routing.registerRoute(/^https?:.*\/page-data\/.*\.json/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
-workbox.routing.registerRoute(/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute(/^https?:.*\.(png|jpg|jpeg|webp|avif|svg|gif|tiff|js|woff|woff2|json|css)$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 workbox.routing.registerRoute(/^https?:\/\/fonts\.googleapis\.com\/css/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 
 /* global importScripts, workbox, idbKeyval */
@@ -94,6 +85,24 @@ const MessageAPI = {
 
   clearPathResources: event => {
     event.waitUntil(idbKeyval.clear())
+
+    // We detected compilation hash mismatch
+    // we should clear runtime cache as data
+    // files might be out of sync and we should
+    // do fresh fetches for them
+    event.waitUntil(
+      caches.keys().then(function (keyList) {
+        return Promise.all(
+          keyList.map(function (key) {
+            if (key && key.includes(`runtime`)) {
+              return caches.delete(key)
+            }
+
+            return Promise.resolve()
+          })
+        )
+      })
+    )
   },
 
   enableOfflineShell: () => {
@@ -160,7 +169,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-3dd59482401e6f9aef9b.js`))) {
+  if (!resources || !(await caches.match(`/app-4703e834cb4fd746e8f1.js`))) {
     return await fetch(event.request)
   }
 
