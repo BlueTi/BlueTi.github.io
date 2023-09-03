@@ -4,7 +4,9 @@ const metaConfig = require('./gatsby-meta-config');
 
 module.exports = {
   siteMetadata: metaConfig,
-
+  flags: {
+    FAST_DEV: true,
+  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
