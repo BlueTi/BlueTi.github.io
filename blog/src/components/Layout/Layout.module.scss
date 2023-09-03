@@ -1,0 +1,12 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.layout {
+    lost-center: $layout-width;
+    width: 90%;
+
+    @media (max-width: 768px) {
+        width:85%;
+        margin-left:15%;
+    }
+}
