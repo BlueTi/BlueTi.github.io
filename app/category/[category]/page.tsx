@@ -9,8 +9,23 @@ interface CategoryPageProps {
   };
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const decodedCategory = decodeURIComponent(params.category);
+export async function generateStaticParams() {
+  const tags = getAllTags();
+  // output: export를 사용할 때는 인코딩된 값을 반환해야 함
+  return tags.map((tag) => ({
+    category: encodeURIComponent(tag),
+  }));
+}
+
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  // params.category는 이미 URL 인코딩된 상태로 들어옴
+  let decodedCategory: string;
+  try {
+    decodedCategory = decodeURIComponent(params.category);
+  } catch (e) {
+    // 이미 디코딩된 경우 그대로 사용
+    decodedCategory = params.category;
+  }
   const posts = getPostsByCategory(decodedCategory);
   const tags = getAllTags();
 
