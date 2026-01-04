@@ -31,9 +31,23 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     const searchPosts = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-        const data = await response.json();
-        setResults(data.posts || []);
+        // 클라이언트 사이드에서 직접 검색
+        const response = await fetch('/posts.json');
+        const allPosts: Post[] = await response.json();
+        
+        const searchTerm = query.toLowerCase();
+        const filtered = allPosts.filter((post) => {
+          const titleMatch = post.title.toLowerCase().includes(searchTerm);
+          const descriptionMatch = post.description?.toLowerCase().includes(searchTerm);
+          const tagMatch = post.tags?.some((tag) => tag.toLowerCase().includes(searchTerm));
+          const categoryMatch = post.categories?.some((cat) =>
+            cat.toLowerCase().includes(searchTerm)
+          );
+
+          return titleMatch || descriptionMatch || tagMatch || categoryMatch;
+        });
+
+        setResults(filtered);
       } catch (error) {
         console.error('Search error:', error);
         setResults([]);
