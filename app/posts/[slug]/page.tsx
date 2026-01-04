@@ -114,7 +114,7 @@ export default async function PostPage({ params }: PostPageProps) {
               mdxOptions: {
                 remarkPlugins: [],
                 rehypePlugins: [
-                  rehypeHighlight,
+                  rehypeHighlight as any,
                   rehypeSlug,
                   [
                     rehypeAutolinkHeadings,
