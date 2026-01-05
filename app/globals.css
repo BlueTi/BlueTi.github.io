@@ -384,8 +384,8 @@ a:hover {
 }
 
 .post-card-column {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   width: 100%;
 }
@@ -809,6 +809,17 @@ a:hover {
     text-align: center;
     padding: 0.625rem 0.75rem;
     font-size: 0.875rem;
+  }
+
+  .post-card-column {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .post-card-column {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
