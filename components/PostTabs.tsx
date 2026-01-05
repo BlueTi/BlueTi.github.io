@@ -34,19 +34,20 @@ export default function PostTabs({ tags = [] }: PostTabsProps) {
   };
 
   return (
-    <div className="post-tabs-wrapper">
-      <div className="post-tabs">
+    <aside className="category-sidebar">
+      <div className="category-sidebar-title">카테고리</div>
+      <nav className="category-sidebar-nav">
         {tabs.map((tab) => (
           <button
             key={tab}
-            className={`tab ${selectedTab === tab ? 'selected' : ''}`}
+            className={`category-sidebar-item ${selectedTab === tab ? 'active' : ''}`}
             onClick={() => handleTabClick(tab)}
           >
             {tab}
           </button>
         ))}
-      </div>
-    </div>
+      </nav>
+    </aside>
   );
 }
 

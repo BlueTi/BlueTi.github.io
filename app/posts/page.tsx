@@ -12,8 +12,12 @@ export default function PostsPage() {
         <div className="category-page-title">All</div>
         <div className="category-page-subtitle">{posts.length} posts</div>
       </div>
-      <PostTabs tags={tags} />
-      <PostCardColumn posts={posts} />
+      <div className="content-with-sidebar">
+        <PostTabs tags={tags} />
+        <div className="main-content">
+          <PostCardColumn posts={posts} />
+        </div>
+      </div>
     </>
   );
 }

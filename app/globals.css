@@ -88,7 +88,7 @@ a:hover {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 768px;
+  max-width: 1200px;
   padding: 2rem 0;
 }
 
@@ -264,7 +264,79 @@ a:hover {
   text-align: center;
 }
 
-/* Post Tabs */
+/* Content with Sidebar */
+.content-with-sidebar {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Category Sidebar */
+.category-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 90px;
+  background-color: var(--surface-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.category-sidebar-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--secondary-text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.category-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.category-sidebar-item {
+  width: 100%;
+  text-align: left;
+  color: var(--secondary-text-color);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-sidebar-item:hover {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+}
+
+.category-sidebar-item.active {
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
+}
+
+.category-sidebar-item.active:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Post Tabs (legacy - for backward compatibility) */
 .post-tabs-wrapper {
   width: 100%;
   margin-bottom: 2rem;
@@ -714,6 +786,32 @@ a:hover {
 }
 
 /* Responsive */
+/* Mobile responsive for sidebar */
+@media (max-width: 768px) {
+  .content-with-sidebar {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .category-sidebar {
+    width: 100%;
+    position: static;
+    top: auto;
+  }
+
+  .category-sidebar-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .category-sidebar-item {
+    text-align: center;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
 @media (max-width: 768px) {
   .page-content {
     padding: 1rem 0;

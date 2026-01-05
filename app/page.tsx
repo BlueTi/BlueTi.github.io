@@ -10,8 +10,12 @@ export default async function Home() {
   return (
     <>
       <Bio />
-      <PostTabs tags={tags} />
-      <PostCardColumn posts={posts} />
+      <div className="content-with-sidebar">
+        <PostTabs tags={tags} />
+        <div className="main-content">
+          <PostCardColumn posts={posts} />
+        </div>
+      </div>
     </>
   );
 }
