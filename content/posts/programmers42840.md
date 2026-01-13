@@ -18,15 +18,23 @@ description: '프로그래머스 큐 연습문제'
 ```java
 import java.util.ArrayList;
 
+/**
+ * 모의고사 문제 해결
+ * 세 수포자의 찍기 패턴과 정답을 비교하여 가장 많이 맞춘 사람을 찾는 문제
+ */
 class Solution {
     public int[] solution(int[] answers) {
-        int[] counter = new int[3];
+        int[] counter = new int[3]; // 각 수포자가 맞춘 개수
+        // 수포자 셋의 패턴을 배열로 저장
         int[][] pattern = { { 1, 2, 3, 4, 5 }, { 2, 1, 2, 3, 2, 4, 2, 5 }, { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 } };
-        int[] lens = { 5, 8, 10 };
-        int max = 0;
+        int[] lens = { 5, 8, 10 }; // 각 패턴의 길이
+        int max = 0; // 최대 맞춘 개수
+        
+        // 각 수포자의 정답 개수 계산
         for (int i = 0; i < 3; i++) {
             int count = 0;
             for (int j = 0; j < answers.length; j++) {
+                // 패턴이 반복되므로 나머지 연산 사용
                 if (pattern[i][(j % lens[i])] == answers[j]) {
                     count++;
                 }
@@ -35,10 +43,12 @@ class Solution {
                 max = count;
             counter[i] = count;
         }
+        
+        // 가장 많이 맞춘 수포자들을 리스트에 추가
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 3; i++)
             if (counter[i] == max)
-                list.add(i + 1);
+                list.add(i + 1); // 수포자 번호는 1부터 시작
 
         return list.stream().mapToInt(i -> i).toArray();
     }

@@ -19,44 +19,53 @@ description: '프로그래머스 큐 연습문제'
 - 그런식으로 각 dfs들이 목표 숫자에 도달했을때 최소 값인지 비교하여 대입한다.
 
 ```java
+/**
+ * N으로 표현 문제 해결
+ * 숫자 N을 사용하여 목표 숫자를 만드는 최소 사용 횟수를 구하는 문제
+ * DFS를 사용하여 모든 경우의 수를 탐색
+ */
 class Solution {
-    //target과 써야하는 숫자 n을 함수 호출시 매개변수가 늘어나므로 매개변수로 쓰기보다 전역변수로 빼 놓는다.
+    // target과 써야하는 숫자 n을 함수 호출시 매개변수가 늘어나므로 매개변수로 쓰기보다 전역변수로 빼 놓음
     int target,n,min=Integer.MAX_VALUE;
 
     public int solution(int N, int number) {
         target = number;
         n = N;
-        //0부터 시작
+        // 0부터 시작 (사용 횟수, 현재 값)
         dfs(0, 0);
         return min == Integer.MAX_VALUE ? -1 : min;
     }
 
-
-    //카운트는 0부터 8, 이전에 생성된 숫자를 num으로 받는다.
+    /**
+     * DFS를 사용하여 모든 경우의 수를 탐색
+     * @param count: 현재까지 사용한 N의 개수
+     * @param num: 현재까지 만든 숫자
+     */
     public void dfs(int count, int num) {
-        //count는 0부터 8로 9번 그보다 크면 -1을 돌려준다.
+        // count는 0부터 8로 9번, 그보다 크면 -1을 돌려줌
         if (count > 8) {
             min = -1;
             return;
         }
-        //생성된 숫자가 목표 값일 경우
+        // 생성된 숫자가 목표 값일 경우
         if (num == target) {
-            //기존의 목표 생성까지 최소 카운트 값과 비교하여 더 작을 경우 min에 대입한다.
+            // 기존의 목표 생성까지 최소 카운트 값과 비교하여 더 작을 경우 min에 대입
             min = min<count?min:count;
             return;
         }
 
-
         int tempN = n;
-        //현재 카운트에서 8까지 접근할 만큼 dfs를 반복한다.
+        // 현재 카운트에서 8까지 접근할 만큼 dfs를 반복
+        // N, NN, NNN... 형태로 숫자를 만들 수 있음
         for (int i = 0; i < 8 - count; i++) {
-            int newCount = count + i + 1;
+            int newCount = count + i + 1; // N을 i+1개 사용
+            // 사칙연산을 수행
             dfs(newCount, num + tempN);
             dfs(newCount, num - tempN);
             dfs(newCount, num * tempN);
             dfs(newCount, num / tempN);
 
-            //현재 만든 숫자를 한칸 앞으로 밀고 n을 추가하여 숫자를 만든다.
+            // 현재 만든 숫자를 한 칸 앞으로 밀고 n을 추가하여 숫자를 만듦 (N -> NN -> NNN...)
             tempN = tempN * 10 + n;
         }
     }

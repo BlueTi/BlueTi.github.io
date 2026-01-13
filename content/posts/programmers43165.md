@@ -21,22 +21,38 @@ description: '프로그래머스 DFS/BFS 연습문제'
 ---
 
 ```java
+/**
+ * 타겟 넘버 문제 해결
+ * 숫자 배열에 + 또는 -를 붙여서 타겟 넘버를 만드는 방법의 개수를 구하는 문제
+ * DFS를 사용하여 모든 경우의 수를 탐색
+ */
 class Solution {
-    int answer = 0;
+    int answer = 0; // 타겟 넘버를 만드는 방법의 개수
 
     public int solution(int[] numbers, int target) {
+        // DFS 시작: 현재 합 0, 인덱스 0부터 시작
         dfs(numbers, target, 0, 0);
         return answer;
     }
 
+    /**
+     * DFS를 사용하여 모든 경우의 수를 탐색
+     * @param numbers: 숫자 배열
+     * @param target: 목표 값
+     * @param sum: 현재까지의 합
+     * @param index: 현재 처리할 인덱스
+     */
     public void dfs(int[] numbers, int target, int sum, int index) {
+        // 모든 숫자를 처리했으면
         if (index >= numbers.length) {
-            if (sum == target)
-                answer++;
+            if (sum == target) // 합이 타겟과 같으면
+                answer++; // 방법 개수 증가
             return;
         }
 
+        // 현재 숫자를 더하는 경우
         dfs(numbers, target, sum + numbers[index], index + 1);
+        // 현재 숫자를 빼는 경우
         dfs(numbers, target, sum - numbers[index], index + 1);
     }
 }
