@@ -11,32 +11,26 @@ interface CategoryPageProps {
 
 export async function generateStaticParams() {
   const tags = getAllTags();
-  // output: export를 사용할 때는 인코딩된 값을 반환해야 함
+  // Next.js는 자동으로 URL 인코딩을 처리하므로 원본 값을 반환
   return tags.map((tag) => ({
-    category: encodeURIComponent(tag),
+    category: tag,
   }));
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  // params.category는 이미 URL 인코딩된 상태로 들어옴
-  let decodedCategory: string;
-  try {
-    decodedCategory = decodeURIComponent(params.category);
-  } catch (e) {
-    // 이미 디코딩된 경우 그대로 사용
-    decodedCategory = params.category;
-  }
-  const posts = getPostsByCategory(decodedCategory);
+  // params.category는 자동으로 디코딩됨
+  const category = params.category;
+  const posts = getPostsByCategory(category);
   const tags = getAllTags();
 
-  if (posts.length === 0 && decodedCategory !== 'All') {
+  if (posts.length === 0 && category !== 'All') {
     notFound();
   }
 
   return (
     <>
       <div className="category-page-header-wrapper">
-        <div className="category-page-title">{decodedCategory}</div>
+        <div className="category-page-title">{category}</div>
         <div className="category-page-subtitle">{posts.length} posts</div>
       </div>
       <div className="content-with-sidebar">
