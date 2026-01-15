@@ -8,7 +8,7 @@
 
 # next.js
 /.next/
-# /out/  # GitHub Pages 배포를 위해 out 디렉토리는 커밋하지 않지만 빌드 아티팩트로 사용
+/out/  # 빌드 결과물, GitHub Actions에서 자동 생성
 
 # production
 /build
