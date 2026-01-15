@@ -27,7 +27,7 @@ export default function PostCardColumn({ posts }: PostCardColumnProps) {
         {posts.map((post) => (
           <div key={post.slug} className="post-card-wrapper">
             <div className="post-card">
-              <Link href={`/posts/${encodeURIComponent(post.slug)}`} className="post-card-link">
+              <Link href={`/posts/${encodeURIComponent(post.slug)}/`} className="post-card-link">
                 <div className="title">{post.title}</div>
                 {post.description && (
                   <p className="description">{post.description}</p>
@@ -41,7 +41,7 @@ export default function PostCardColumn({ posts }: PostCardColumnProps) {
                   {(post.tags || post.categories || []).slice(0, 3).map((tag) => (
                     <Link
                       key={tag}
-                      href={`/category/${encodeURIComponent(tag)}`}
+                      href={`/category/${encodeURIComponent(tag)}/`}
                       className="category"
                     >
                       {tag}

@@ -70,7 +70,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   };
 
   const handleResultClick = (slug: string) => {
-    router.push(`/posts/${encodeURIComponent(slug)}`);
+    router.push(`/posts/${encodeURIComponent(slug)}/`);
     onClose();
     setQuery('');
   };

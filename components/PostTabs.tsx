@@ -15,7 +15,9 @@ export default function PostTabs({ tags = [] }: PostTabsProps) {
   useEffect(() => {
     // 현재 경로에서 선택된 탭 설정
     if (pathname.startsWith('/category/')) {
-      const category = decodeURIComponent(pathname.split('/category/')[1]);
+      // trailing slash 제거 후 디코딩
+      const categoryPath = pathname.split('/category/')[1].replace(/\/$/, '');
+      const category = decodeURIComponent(categoryPath);
       setSelectedTab(category);
     } else {
       setSelectedTab('All');
@@ -27,9 +29,9 @@ export default function PostTabs({ tags = [] }: PostTabsProps) {
   const handleTabClick = (tab: string) => {
     setSelectedTab(tab);
     if (tab === 'All') {
-      router.push('/posts');
+      router.push('/posts/');
     } else {
-      router.push(`/category/${encodeURIComponent(tab)}`);
+      router.push(`/category/${encodeURIComponent(tab)}/`);
     }
   };
 
