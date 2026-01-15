@@ -11,21 +11,16 @@ interface CategoryPageProps {
 
 export async function generateStaticParams() {
   const tags = getAllTags();
-  // output: 'export'를 사용할 때는 파일 경로로 사용되므로 인코딩된 값을 반환해야 함
+  // Next.js가 자동으로 URL 인코딩을 처리하므로 원본 값을 반환
+  // trailingSlash: true 설정으로 인해 자동으로 /index.html이 생성됨
   return tags.map((tag) => ({
-    category: encodeURIComponent(tag),
+    category: tag,
   }));
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  // params.category는 인코딩된 상태로 들어오므로 디코딩 필요
-  let category: string;
-  try {
-    category = decodeURIComponent(params.category);
-  } catch (e) {
-    // 이미 디코딩된 경우 그대로 사용
-    category = params.category;
-  }
+  // params.category는 Next.js가 자동으로 디코딩함
+  const category = params.category;
   const posts = getPostsByCategory(category);
   const tags = getAllTags();
 
