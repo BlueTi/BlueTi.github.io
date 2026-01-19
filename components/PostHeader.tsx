@@ -14,7 +14,7 @@ export default function PostHeader({ post }: PostHeaderProps) {
           {(post.tags || post.categories || []).map((tag) => (
             <Link
               key={tag}
-              href={`/category/${encodeURIComponent(tag)}/`}
+              href={`/posts/?category=${encodeURIComponent(tag)}`}
               className="category"
             >
               {tag}

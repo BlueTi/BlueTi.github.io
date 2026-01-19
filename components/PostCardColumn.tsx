@@ -41,7 +41,7 @@ export default function PostCardColumn({ posts }: PostCardColumnProps) {
                   {(post.tags || post.categories || []).slice(0, 3).map((tag) => (
                     <Link
                       key={tag}
-                      href={`/category/${encodeURIComponent(tag)}/`}
+                      href={`/posts/?category=${encodeURIComponent(tag)}`}
                       className="category"
                     >
                       {tag}

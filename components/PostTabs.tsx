@@ -1,37 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 interface PostTabsProps {
   tags?: string[];
+  selectedCategory?: string;
 }
 
-export default function PostTabs({ tags = [] }: PostTabsProps) {
+export default function PostTabs({ tags = [], selectedCategory }: PostTabsProps) {
   const router = useRouter();
-  const pathname = usePathname();
-  const [selectedTab, setSelectedTab] = useState('All');
-
-  useEffect(() => {
-    // 현재 경로에서 선택된 탭 설정
-    if (pathname.startsWith('/category/')) {
-      // trailing slash 제거 후 디코딩
-      const categoryPath = pathname.split('/category/')[1].replace(/\/$/, '');
-      const category = decodeURIComponent(categoryPath);
-      setSelectedTab(category);
-    } else {
-      setSelectedTab('All');
-    }
-  }, [pathname]);
+  const selectedTab = selectedCategory || 'All';
 
   const tabs = ['All', ...tags];
 
   const handleTabClick = (tab: string) => {
-    setSelectedTab(tab);
     if (tab === 'All') {
       router.push('/posts/');
     } else {
-      router.push(`/category/${encodeURIComponent(tab)}/`);
+      router.push(`/posts/?category=${encodeURIComponent(tab)}`);
     }
   };
 
@@ -52,4 +38,3 @@ export default function PostTabs({ tags = [] }: PostTabsProps) {
     </aside>
   );
 }
-
