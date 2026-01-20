@@ -92,6 +92,25 @@ emoji: 🧢
 
 배포가 완료되면 `https://blueti.github.io`에서 블로그를 확인할 수 있습니다.
 
+### 환경 변수 설정
+
+#### Google Analytics 설정
+
+1. **로컬 개발 환경**
+   - 프로젝트 루트에 `.env.local` 파일을 생성하세요
+   - 다음 내용을 추가하세요:
+     ```
+     NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+     ```
+   - `G-XXXXXXXXXX`는 Google Analytics에서 발급받은 측정 ID입니다
+
+2. **GitHub Actions 배포 환경**
+   - GitHub 리포지토리에서 Settings → Secrets and variables → Actions로 이동
+   - New repository secret을 클릭
+   - Name: `NEXT_PUBLIC_GA_ID`
+   - Value: Google Analytics 측정 ID (예: `G-XXXXXXXXXX`)
+   - `.github/workflows/deploy.yml`에서 환경 변수를 사용하도록 설정되어 있습니다
+
 ## 기술 스택
 
 - Next.js 14 (App Router)
