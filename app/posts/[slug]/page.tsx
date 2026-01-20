@@ -5,7 +5,6 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import PostHeader from '@/components/PostHeader';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 interface PostPageProps {
   params: {
@@ -116,16 +115,6 @@ export default async function PostPage({ params }: PostPageProps) {
                 rehypePlugins: [
                   rehypeHighlight as any,
                   rehypeSlug,
-                  [
-                    rehypeAutolinkHeadings,
-                    {
-                      behavior: 'append',
-                      content: {
-                        type: 'text',
-                        value: '#',
-                      },
-                    },
-                  ],
                 ],
                 format: 'mdx',
               },

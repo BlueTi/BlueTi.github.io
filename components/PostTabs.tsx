@@ -1,14 +1,16 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 interface PostTabsProps {
   tags?: string[];
   selectedCategory?: string;
 }
 
-export default function PostTabs({ tags = [], selectedCategory }: PostTabsProps) {
+function PostTabsContent({ tags = [], selectedCategory }: PostTabsProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const selectedTab = selectedCategory || 'All';
 
   const tabs = ['All', ...tags];
@@ -36,5 +38,20 @@ export default function PostTabs({ tags = [], selectedCategory }: PostTabsProps)
         ))}
       </nav>
     </aside>
+  );
+}
+
+export default function PostTabs(props: PostTabsProps) {
+  return (
+    <Suspense fallback={
+      <aside className="category-sidebar">
+        <div className="category-sidebar-title">카테고리</div>
+        <nav className="category-sidebar-nav">
+          <div>로딩 중...</div>
+        </nav>
+      </aside>
+    }>
+      <PostTabsContent {...props} />
+    </Suspense>
   );
 }
