@@ -5,12 +5,7 @@ export default function Bio() {
     <div className="bio">
       <div className="introduction korean">
         <p className="title">
-          안녕하세요.
-          <br />
-          <span className="react-rotating-text-cursor">|</span>
-          <br />
-          개발자 <strong>이재호</strong>입니다.
-          <br />
+          개발새발 블로그
         </p>
         <div className="social-links">
           <a

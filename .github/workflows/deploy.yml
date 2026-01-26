@@ -34,7 +34,14 @@ jobs:
       - name: Build
         env:
           NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
-        run: npm run build
+        run: |
+          echo "Checking NEXT_PUBLIC_GA_ID..."
+          if [ -z "$NEXT_PUBLIC_GA_ID" ]; then
+            echo "⚠️ NEXT_PUBLIC_GA_ID is not set!"
+          else
+            echo "✅ NEXT_PUBLIC_GA_ID is set (length: ${#NEXT_PUBLIC_GA_ID})"
+          fi
+          npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
