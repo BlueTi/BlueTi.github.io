@@ -94,6 +94,33 @@ emoji: 🧢
 
 ### 환경 변수 설정
 
+#### 댓글 기능 (Giscus) 설정
+
+1. **GitHub Discussions 활성화**
+   - 리포지토리 Settings → General → Features → Discussions 활성화
+
+2. **Giscus 앱 설치**
+   - [Giscus 공식 사이트](https://giscus.app/)에서 GitHub 앱 설치
+   - 리포지토리 선택 후 Install
+
+3. **Giscus 설정 값 확인**
+   - Giscus 사이트에서 설정 완료 후 다음 값 복사:
+     - `data-repo-id`: `R_xxxxxxxxxxxxx`
+     - `data-category-id`: `DIC_kwxxxxxxxxxxxxx`
+
+4. **GitHub Secrets 설정**
+   - Settings → Secrets and variables → Actions
+   - 다음 Secrets 추가:
+     - `NEXT_PUBLIC_GISCUS_REPO`: `BlueTi/BlueTi.github.io` (또는 본인 리포지토리)
+     - `NEXT_PUBLIC_GISCUS_REPO_ID`: Giscus에서 받은 repo-id
+     - `NEXT_PUBLIC_GISCUS_CATEGORY_ID`: Giscus에서 받은 category-id
+     - (선택) `NEXT_PUBLIC_GISCUS_CATEGORY`: `Announcements`
+     - (선택) `NEXT_PUBLIC_GISCUS_MAPPING`: `pathname`
+     - (선택) `NEXT_PUBLIC_GISCUS_THEME`: `preferred_color_scheme`
+     - (선택) `NEXT_PUBLIC_GISCUS_LANG`: `ko`
+
+자세한 설정 방법은 `docs/comments-setup.md`를 참고하세요.
+
 #### Google Analytics 설정
 
 1. **로컬 개발 환경**

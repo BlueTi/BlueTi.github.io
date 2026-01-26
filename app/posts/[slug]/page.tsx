@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getPostBySlug, getAllPosts } from '@/lib/posts';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import PostHeader from '@/components/PostHeader';
+import Comments from '@/components/Comments';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 
@@ -123,6 +124,19 @@ export default async function PostPage({ params }: PostPageProps) {
           />
         </div>
       </div>
+      <Comments
+        repo={process.env.NEXT_PUBLIC_GISCUS_REPO || 'BlueTi/BlueTi.github.io'}
+        repoId={process.env.NEXT_PUBLIC_GISCUS_REPO_ID}
+        category={process.env.NEXT_PUBLIC_GISCUS_CATEGORY}
+        categoryId={process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID}
+        mapping={process.env.NEXT_PUBLIC_GISCUS_MAPPING as 'pathname' | 'url' | 'title' | 'og:title' || 'pathname'}
+        reactionsEnabled={process.env.NEXT_PUBLIC_GISCUS_REACTIONS_ENABLED !== 'false'}
+        emitMetadata={process.env.NEXT_PUBLIC_GISCUS_EMIT_METADATA === 'true'}
+        inputPosition={(process.env.NEXT_PUBLIC_GISCUS_INPUT_POSITION as 'top' | 'bottom') || 'bottom'}
+        theme={(process.env.NEXT_PUBLIC_GISCUS_THEME as any) || 'preferred_color_scheme'}
+        lang={process.env.NEXT_PUBLIC_GISCUS_LANG || 'ko'}
+        loading={(process.env.NEXT_PUBLIC_GISCUS_LOADING as 'lazy' | 'eager') || 'lazy'}
+      />
     </>
   );
 }
