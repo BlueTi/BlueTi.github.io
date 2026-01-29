@@ -2,7 +2,7 @@
 emoji: 📝
 title: DB 읽기는 빠른데 쓰기가 느릴 때 - 원인과 대처
 date: '2026-01-20T00:00:00.000Z'
-categories: 데이터베이스 면접
+categories: 데이터베이스
 author: Jard
 description: '면접에서 받았던 질문을 다시 정리하며, DB 읽기와 쓰기 성능 차이의 원인과 해결 방법을 알아봅니다.'
 ---

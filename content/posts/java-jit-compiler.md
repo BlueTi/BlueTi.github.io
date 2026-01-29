@@ -2,7 +2,7 @@
 emoji: ⚡
 title: Java JIT 컴파일러 - 성능 최적화의 핵심
 date: '2026-01-24T00:00:00.000Z'
-categories: Java 면접
+categories: Java
 author: Jard
 description: 'Java의 JIT 컴파일러가 어떻게 동작하는지, 그리고 왜 Java가 빠른 성능을 보이는지 알아봅니다.'
 ---

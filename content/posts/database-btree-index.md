@@ -2,7 +2,7 @@
 emoji: 🌳
 title: 데이터베이스 인덱싱 - B-Tree의 원리와 동작 방식
 date: '2026-01-27T00:00:00.000Z'
-categories: 데이터베이스 면접
+categories: 데이터베이스
 author: Jard
 description: '데이터베이스 인덱스가 어떻게 동작하는지, B-Tree 구조가 왜 인덱싱에 적합한지 알아봅니다.'
 ---

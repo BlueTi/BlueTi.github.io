@@ -2,7 +2,7 @@
 emoji: 🐌
 title: JPA N+1 문제 - 원인과 해결법
 date: '2025-01-19T00:00:00.000Z'
-categories: Spring 면접
+categories: Spring
 author: Jard
 description: '면접에서 받았던 질문을 다시 정리하며, JPA N+1 문제의 원인과 해결 방법을 알아봅니다.'
 ---
