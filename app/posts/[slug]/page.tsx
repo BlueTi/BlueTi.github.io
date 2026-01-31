@@ -7,9 +7,31 @@ import Comments from '@/components/Comments';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 
+const BASE_URL = 'https://blueti.github.io';
+
 interface PostPageProps {
   params: {
     slug: string;
+  };
+}
+
+export async function generateMetadata({ params }: PostPageProps) {
+  const post = getPostBySlug(params.slug);
+  if (!post) return { title: '글을 찾을 수 없습니다' };
+  const title = `${post.title} | BlueTi Blog`;
+  const description = post.description || `${post.title} - BlueTi 기술 블로그`;
+  const url = `${BASE_URL}/posts/${post.slug}/`;
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: 'BlueTi Blog',
+      type: 'article',
+      publishedTime: post.date,
+    },
   };
 }
 
